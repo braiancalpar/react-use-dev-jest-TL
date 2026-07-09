@@ -6,6 +6,7 @@ import {
 
 describe("Testando funcoes utilitarias do projeto", () => {
   test("Deve formatar os precos corretamente", () => {
+    // expect(formatPrice(10)).toBe(`R$ 10,00`);
     expect(formatPrice(10)).toContain("R$");
     expect(formatPrice(10)).toContain("10,00");
   });
