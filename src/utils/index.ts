@@ -5,15 +5,15 @@ export const formatPrice = (price: number) => {
 };
 
 export const calculateTotalPrice = (
-  products: { id: number; price: number }[],
+  products: { id: number; price: number; quantity: number }[],
 ) => {
   return products.reduce((acc, product) => {
-    return product.price >= 0 ? acc + product.price : acc;
-   }, 0);
+    return product.price >= 0 ? acc + product.price * product.quantity : acc;
+  }, 0);
 };
 
 export const calculateTotalPriceWithDiscount = (
-  products: { id: number; price: number }[],
+  products: { id: number; price: number; quantity: number }[],
   discount: number,
 ) => {
   if (discount >= 100) {
