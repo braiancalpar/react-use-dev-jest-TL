@@ -7,7 +7,9 @@ export const formatPrice = (price: number) => {
 export const calculateTotalPrice = (
   products: { id: number; price: number }[],
 ) => {
-  return products.reduce((acc, product) => acc + product.price, 0);
+  return products.reduce((acc, product) => {
+    return product.price >= 0 ? acc + product.price : acc;
+   }, 0);
 };
 
 export const calculateTotalPriceWithDiscount = (

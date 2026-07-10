@@ -93,4 +93,31 @@ describe("Testando funcoes utilitarias do projeto", () => {
       "abcd",
     );
   });
+
+  test("deve retornar 0 para um carrinho vazio", () => {
+    const result = calculateTotalPrice([]);
+    expect(result).toBe(0);
+  });
+
+  test("deve calcular corretamente com produtos de preço 0", () => {
+    const result = calculateTotalPrice([
+      { id: 1, price: 0 },
+      { id: 2, price: 50 },
+    ]);
+    expect(result).toBe(50);
+  });
+
+  test("deve ignorar produtos com preço negativo", () => {
+    const result = calculateTotalPrice([
+      { id: 1, price: -20 },
+      { id: 2, price: 70 },
+    ]);
+    expect(result).toBe(70);
+  });
+
+  test("deve retornar 0 se o desconto for 100%", () => {
+    const products = [{ id: 1, price: 100 }];
+    const result = calculateTotalPriceWithDiscount(products, 100);
+    expect(result).toBe(0);
+  });
 });
